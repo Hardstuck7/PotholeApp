@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
         #map {
             height: 80vh;
@@ -28,8 +29,9 @@
 </head>
 <body>
     
-    <div id="container" >
-    <div id="map"></div>
+    <div id="container">
+        <h3 id="info"></h3>
+        <div id="map"></div>
     </div>
 
     <script>
@@ -46,6 +48,23 @@
             /* Can make multiple of these for multiple maps */
             let map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+
+            let markerOptions = {
+                position: new google.maps.LatLng(-28.54, 153.54),
+                title: 'poggers marker'
+            
+                
+            }
+
+            let marker = new google.maps.Marker(markerOptions)
+            
+
+            marker.addListener('click', (googleMapsEvent) => {
+                document.getElementById('info').innerHTML = 'latitude: ' + googleMapsEvent.latLng.lat() + ' Longitude: ' + googleMapsEvent.latLng.lng();
+            })
+
+
+            marker.setMap(map);
 
         }
 
