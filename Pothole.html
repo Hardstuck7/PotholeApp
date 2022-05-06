@@ -66,6 +66,20 @@
 
             marker.setMap(map);
 
+            const infoWindowOptions = {
+                content: 'deez',
+                position: { lat: -28.64, lng: 153.61 } ,
+            }
+
+
+            const infoWindow = new google.maps.InfoWindow(infoWindowOptions)
+
+            const infoWindowOpenOptions = {
+                map: map,
+                anchor: marker,
+            }
+
+            infoWindow.open(infoWindowOpenOptions);
         }
 
     </script>
