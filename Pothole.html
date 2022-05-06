@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*Container to center the map */
+        #container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #map {
+            height: 80vh;
+            width: 80vw;
+            background-color: aqua;
+
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container" >
+    <div id="map"></div>
+    </div>
+
+    <script>
+        /* function to display map */
+        function initMap() {
+
+            let mapOptions = {
+                center: { lat: -28.64, lng: 153.61 },
+                zoom: 12
+            }
+
+
+            /* Creates one instance of a map */
+            /* Can make multiple of these for multiple maps */
+            let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+        }
+
+    </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRhicUTwga3SlzfEOfhjzS1L1-LVUe2tI&callback=initMap"></script></script>
+    
+</body>
+</html>
