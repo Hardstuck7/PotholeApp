@@ -66,20 +66,38 @@
 
             marker.setMap(map);
 
+            
+
             const infoWindowOptions = {
-                content: 'deez',
+                content: 'ahgggggggggggggggggg         gfjfjhgggghh',
                 position: { lat: -28.64, lng: 153.61 } ,
+                 
             }
 
 
-            const infoWindow = new google.maps.InfoWindow(infoWindowOptions)
+            const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+
+            infoWindow.setContent(`
+                <h1>blah blah location </h1>
+                <img src="./goofy ahh.png">
+            
+            `);
 
             const infoWindowOpenOptions = {
                 map: map,
                 anchor: marker,
+                maxWidth: 30
+
             }
 
             infoWindow.open(infoWindowOpenOptions);
+        
+        
+            
+        
+        
+        
+        
         }
 
     </script>
