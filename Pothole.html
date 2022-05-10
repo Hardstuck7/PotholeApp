@@ -40,7 +40,9 @@
 
             let mapOptions = {
                 center: { lat: -28.64, lng: 153.61 },
-                zoom: 12
+                zoom: 12,
+                mapTypeId: 'satellite',
+                elementType: "labels",
             }
 
 
@@ -60,7 +62,7 @@
             
 
             marker.addListener('click', (googleMapsEvent) => {
-                document.getElementById('info').innerHTML = 'latitude: ' + googleMapsEvent.latLng.lat() + ' Longitude: ' + googleMapsEvent.latLng.lng();
+                infoWindow.open(infoWindowOpenOptions);
             })
 
 
@@ -69,19 +71,23 @@
             
 
             const infoWindowOptions = {
-                content: 'ahgggggggggggggggggg         gfjfjhgggghh',
+                content: '',
                 position: { lat: -28.64, lng: 153.61 } ,
                  
             }
 
 
-            const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+         const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
-            infoWindow.setContent(`
+          infoWindow.setContent(`
                 <h1>blah blah location </h1>
-                <img src="./goofy ahh.png">
+                <img src="./goofy ahh.png"
+                width="180px"
+                height="180px">
             
             `);
+
+            
 
             const infoWindowOpenOptions = {
                 map: map,
@@ -91,11 +97,6 @@
             }
 
             infoWindow.open(infoWindowOpenOptions);
-        
-        
-            
-        
-        
         
         
         }
