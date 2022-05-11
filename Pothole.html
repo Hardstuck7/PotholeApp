@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    
+    <button type="button">Edit!</button>
     <div id="container">
         <h3 id="info"></h3>
         <div id="map"></div>
@@ -49,12 +49,14 @@
             /* Can make multiple of these for multiple maps */
             let map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+            fetch('http://127.0.0.1:5500')
+                .then(response => response.json())
+                .then(data => console.log(data));
 
             let markerOptions = {
                 position: new google.maps.LatLng(-28.64, 153.61),
                 title: 'poggers marker',
-                animation: google.maps.Animation.DROP,
-                
+                animation: google.maps.Animation.DROP,  
             }
 
             let marker = new google.maps.Marker(markerOptions)
