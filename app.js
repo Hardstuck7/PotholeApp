@@ -1,6 +1,8 @@
 const express = require('express');
-
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 // ROUTES
 app.get('/', (req,res) => {
@@ -11,4 +13,4 @@ app.get('/', (req,res) => {
     });
 });
 
-app.listen(5500);
+app.listen(3000);
