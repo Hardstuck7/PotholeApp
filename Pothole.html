@@ -59,55 +59,54 @@
                 console.log(error);
             })
 
-            let markerOptions = {
-                position: new google.maps.LatLng(-28.64, 153.61),
-                title: 'poggers marker',
-                animation: google.maps.Animation.DROP,  
-            }
 
-            let marker = new google.maps.Marker(markerOptions)
+            function Createmarker (lat, lng, pic) {
+
+
+                let markerOptions = {
+                    position: new google.maps.LatLng(lat, lng),
+                    animation: google.maps.Animation.DROP,  
+                }
+
+                let marker = new google.maps.Marker(markerOptions)
+                
+
+                marker.addListener('click', (googleMapsEvent) => {
+                    infoWindow.open(infoWindowOpenOptions);
+                })
+
+
+                marker.setMap(map);
+
+
             
-
-            marker.addListener('click', (googleMapsEvent) => {
-                infoWindow.open(infoWindowOpenOptions);
-            })
-
-
-            marker.setMap(map);
-
-            
-
-            const infoWindowOptions = {
+                
+                const infoWindowOptions = {
                 content: '',
-                position: { lat: -28.64, lng: 153.61 } ,
+                position: { lat, lng } ,
                  
             }
 
 
-         const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+                const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
-          infoWindow.setContent(`
-                <h1>blah blah location </h1>
-                <img src="./goofy ahh.png"
-                width="180px"
-                height="180px">
+                infoWindow.setContent(`
+                        <h1>Location</h1>
+                        <img src="`+pic+`">
+                        width="180px"
+                        height="180px">
+                    
+                    `);
+
             
-            `);
 
-            
-
-            const infoWindowOpenOptions = {
-                map: map,
-                anchor: marker,
-                maxWidth: 30,
+                const infoWindowOpenOptions = {
+                    map: map,
+                    anchor: marker,
+                    maxWidth: 30,
                 
-
-            }
-
-            infoWindow.open(infoWindowOpenOptions);
-
-            
-
+                }
+            } 
             
             
                     
@@ -133,7 +132,7 @@
             
             
             //GET AXIOS TO WORK
-    }   
+        }   
     
     </script>
     
