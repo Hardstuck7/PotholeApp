@@ -42,24 +42,6 @@
                 zoom: 12,
                 mapTypeId: 'hybrid',
             }
-
-
-            /* Creates one instance of a map */
-            /* Can make multiple of these for multiple maps */
-            let map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-            // Make a request for a user with a given ID
-            axios.get('http://127.0.0.1:3000')
-            .then(function (response) {
-                // handle success
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-
-
             function Createmarker (lat, lng, pic) {
 
 
@@ -69,7 +51,7 @@
                 }
 
                 let marker = new google.maps.Marker(markerOptions)
-                
+
 
                 marker.addListener('click', (googleMapsEvent) => {
                     infoWindow.open(infoWindowOpenOptions);
@@ -79,34 +61,52 @@
                 marker.setMap(map);
 
 
-            
-                
+
+
                 const infoWindowOptions = {
                 content: '',
                 position: { lat, lng } ,
-                 
-            }
+                
+                }
 
 
                 const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
                 infoWindow.setContent(`
-                        <h1>Location</h1>
+                        <h1 id="`+lat+ +lng+`">Location</h1>
                         <img src="`+pic+`">
-                        width="180px"
-                        height="180px">
+                        <width="50px">
+                        <height="50px">
                     
                     `);
 
-            
+
 
                 const infoWindowOpenOptions = {
                     map: map,
                     anchor: marker,
                     maxWidth: 30,
-                
+
                 }
-            } 
+                } 
+
+            /* Creates one instance of a map */
+            /* Can make multiple of these for multiple maps */
+            let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            // Make a request for a user with a given ID
+            axios.get('http://127.0.0.1:3000')
+            .then(function (response) {
+                // handle success
+                console.log(response.data);
+                Createmarker(response.data.lat, response.data.lng, response.data.pic);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
+
+            
             
             
                     
