@@ -4,11 +4,12 @@ const cors = require('cors');
 const app = express();
 
 
-mongoose.connect('mongodb+srv://Hardstuck7:Pothole123@cluster0.lnql6.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://Hardstuck7:Pothole123@cluster0.lnql6.mongodb.net/?retryWrites=true&w=majority', () => console.log('connected to db'));
 
 app.use(cors());
 
 // ROUTES
+/*
 app.get('/', (req,res) => {
     res.send({
         "lat": -28.64,
@@ -16,5 +17,10 @@ app.get('/', (req,res) => {
         "pic": "/goofy ahh.png"
     });
 });
+*/
+
+const pothole = require("./Routes/routes.js");
+
+app.use('/', pothole);
 
 app.listen(3000);
