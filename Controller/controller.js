@@ -1,5 +1,6 @@
 const db = require("../Models/Pothole");
-const Pothole = db.pothole;
+const { all } = require("../Routes/routes");
+const Pothole = db.Pothole;
 // Create and Save a new Tutorial
 
 exports.create = (req, res) => {
@@ -7,7 +8,7 @@ exports.create = (req, res) => {
   
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all potholes from the database.
 exports.findAll = (req, res) => {
   Pothole.find()
     .then(data => {
@@ -16,9 +17,9 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving laptimes."
+          err.message || "Some error occurred while retrieving Potholes."
       });
-    });
+    })
 };
 
 // Find a single Tutorial with an id
