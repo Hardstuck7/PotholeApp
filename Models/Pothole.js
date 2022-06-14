@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Pothole = mongoose.Schema;
-const ObjectId = Pothole.Types.ObjectId;
 
 const pothole = new Pothole({
   Lat: {
@@ -14,8 +13,7 @@ const pothole = new Pothole({
   Img: {
     type: String,
     required: [true],
-  }
-  
+  }  
 });
 
-module.exports = { Pothole };
+module.exports = { pothole };

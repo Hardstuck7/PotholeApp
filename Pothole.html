@@ -94,11 +94,11 @@
             /* Can make multiple of these for multiple maps */
             let map = new google.maps.Map(document.getElementById('map'), mapOptions);
             // Make a request for a user with a given ID
-            axios.get('http://127.0.0.1:3000')
+            axios.get('http://localhost:3001/api/pothole')
             .then(function (response) {
                 // handle success
                 console.log(response.data);
-                Createmarker(response.data.lat, response.data.lng, response.data.pic);
+                Createmarker(response.data.Lat, response.data.Lng, response.data.Img);
             })
             .catch(function (error) {
                 // handle error
@@ -125,6 +125,25 @@
            
         }   
     
+
+
+        function postdata() {
+
+            axios.post('http://localhost:3001/api/pothole', {
+                Lat: 'Fred',
+                Lng: 'Flintstone',
+                Img: 'Hello'
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+
+       // postdata();
+
     </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRhicUTwga3SlzfEOfhjzS1L1-LVUe2tI&callback=initMap"></script></script>
