@@ -42,53 +42,44 @@
                 zoom: 12,
                 mapTypeId: 'hybrid',
             }
-            function Createmarker (lat, lng, pic) {
+
+            function Createmarker (lat, lng, img, map) {
 
 
+                console.log(lat, lng);
                 let markerOptions = {
                     position: new google.maps.LatLng(lat, lng),
                     animation: google.maps.Animation.DROP,  
                 }
-
                 let marker = new google.maps.Marker(markerOptions)
-
 
                 marker.addListener('click', (googleMapsEvent) => {
                     infoWindow.open(infoWindowOpenOptions);
                 })
 
-
                 marker.setMap(map);
 
-
-
-
                 const infoWindowOptions = {
-                content: '',
-                position: { lat, lng } ,
-                
+                    content: '',
+                    position: { lat, lng } ,                
                 }
-
 
                 const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
                 infoWindow.setContent(`
                         <h1 id="`+lat+ +lng+`">Location</h1>
-                        <img src="`+pic+`">
+                        <img src="`+img+`">
                         <width="50px">
                         <height="50px">
                     
                     `);
 
-
-
                 const infoWindowOpenOptions = {
                     map: map,
                     anchor: marker,
                     maxWidth: 30,
-
                 }
-                } 
+            } 
 
             /* Creates one instance of a map */
             /* Can make multiple of these for multiple maps */
@@ -98,7 +89,7 @@
             .then(function (response) {
                 // handle success
                 console.log(response.data);
-                Createmarker(response.data.Lat, response.data.Lng, response.data.Img);
+                Createmarker(Number(response.data.Lat), Number(response.data.Lng), response.data.Img, map);
             })
             .catch(function (error) {
                 // handle error
@@ -106,32 +97,28 @@
             })
 
             
-                map.addListener('click', function(event) {  
-                    addMarker(event.latLng)
+            map.addListener('click', function(event) {  
+                addMarker(event.latLng)
+            });
+                
+            function addMarker(location) {  
+                var marker = new google.maps.Marker({  
+                    position: location,  
+                    map: map 
                 });
-                    
-                function addMarker(location) {  
-                    var marker = new google.maps.Marker({  
-                        position: location,  
-                        map: map  
-                    });  
-                    
-                    markers.push(marker); 
-            
-                    
-                }
-
-            
+                
+                markers.push(marker);                 
+            }
            
-        }   
+    }   
     
 
 
         function postdata() {
 
             axios.post('http://localhost:3001/api/pothole', {
-                Lat: 'Fred',
-                Lng: 'Flintstone',
+                Lat: '28.6419',
+                Lng: '153.6105',
                 Img: 'Hello'
             })
             .then(function (response) {
