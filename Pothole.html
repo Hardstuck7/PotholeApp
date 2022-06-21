@@ -94,19 +94,29 @@
                 console.log(error);
             })
 
-            
-            map.addListener('click', function(event) {  
+            function createmarkeronclick () {
+
+                map.addListener('click', function(event) {  
                 addMarker(event.latLng)
             });
                 
             function addMarker(location) {  
                 var marker = new google.maps.Marker({  
                     position: location,  
-                    map: map 
+                    map: map, 
+                    title:'lol'
                 });
                 
-                markers.push(marker);                 
+                markers.push(marker);
+  
+                
             }
+
+        }
+
+        createmarkeronclick();
+
+            
            
     }   
     
