@@ -65,10 +65,10 @@
                 const infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
                 infoWindow.setContent(`
-                        <h1 id="`+lat+ +lng+`">Location</h1>
-                        <img src="`+img+`">
-                        <width="50px">
-                        <height="50px">
+                        <h1>Lat: `+lat+ "<br/>" + "Lng: "+lng+`</h1>
+                        <img src="`+img+`"
+                        width="150px"
+                        height="130px">
                     
                     `);
 
@@ -77,7 +77,7 @@
                     anchor: marker,
                     maxWidth: 30,
                 }
-            } 
+            }
 
             /* Creates one instance of a map */
             /* Can make multiple of these for multiple maps */
@@ -96,9 +96,11 @@
 
             function createmarkeronclick () {
 
-                map.addListener('click', function(event) {  
-                addMarker(event.latLng)
-            });
+                map.addListener('click', function(event) {
+                    console.log(event);
+                    Createmarker(event.latLng.lat(), event.latLng.lng(), '', map);
+                });
+            }
                 
             function addMarker(location) {  
                 var marker = new google.maps.Marker({  
@@ -106,21 +108,16 @@
                     map: map, 
                     title:'lol'
                 });
-                
+ 
                 markers.push(marker);
-  
+
+                
                 
             }
 
-        }
-
-        createmarkeronclick();
-
             
-           
-    }   
-    
-
+            createmarkeronclick();
+        }
 
         function postdata() {
 
